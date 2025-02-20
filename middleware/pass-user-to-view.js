@@ -3,4 +3,4 @@ const passUserToView = (req, res, next) => {
     next();
 };
 
-module.export = passUserToView;
+module.exports = passUserToView;

@@ -34,7 +34,7 @@ router.delete('/:listId', async (req, res) => {
       const currentUser = await User.findById(req.session.user._id);
       // Use the Mongoose .deleteOne() method to delete
       // an application using the id supplied from req.params
-      currentUser.lists.id(req.params.applicationId).deleteOne();
+      currentUser.lists.id(req.params.listId).deleteOne();
       await currentUser.save();
       res.redirect(`/users/${currentUser._id}/lists`);
     } catch (error) {
@@ -58,7 +58,7 @@ router.put('/:listId', async (req, res) => {
       await currentUser.save();
       // Redirect back to the show view of the current list
       res.redirect(
-        `/users/${currentUser._id}/applications/${req.params.applicationId}`
+        `/users/${currentUser._id}/lists/${req.params.listId}`
       );
     } catch (error) {
       console.log(error);
