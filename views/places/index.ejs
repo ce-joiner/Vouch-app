@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Places in <%= list.title %></title>
+  <!-- <link rel="stylesheet" href="/stylesheets/style.css"> -->
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+
+  <main>
+    <h1>Places in <%= list.title %></h1>
+    <a href="/users/<%= user._id %>/lists/<%= list._id %>/places/new">Add a New Place</a>
+    
+    <ul>
+      <% if (list.places && list.places.length > 0) { %>
+        <% list.places.forEach(function(place) { %>
+          <li>
+            <h2><%= place.name %></h2>
+            <p><strong>Category:</strong> <%= place.category %></p>
+            <% if (place.address) { %>
+              <p><strong>Address:</strong> <%= place.address %></p>
+            <% } %>
+            <% if (place.notes) { %>
+              <p><strong>Notes:</strong> <%= place.notes %></p>
+            <% } %>
+            <% if (place.website) { %>
+              <p><strong>Website:</strong> <a href="<%= place.website %>" target="_blank"><%= place.website %></a></p>
+            <% } %>
+            <% if (place.socialMedia) { %>
+              <p><strong>Social Media:</strong> <a href="<%= place.socialMedia %>" target="_blank"><%= place.socialMedia %></a></p>
+            <% } %>
+            <a href="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>/edit">Edit</a>
+            <form action="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>?_method=DELETE" method="POST" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }); %>
+      <% } else { %>
+        <li>No places have been added to this list yet.</li>
+      <% } %>
+    </ul>
+
+    <a href="/users/<%= user._id %>/lists">Back to Lists</a>
+  </main>
+</body>
+</html>

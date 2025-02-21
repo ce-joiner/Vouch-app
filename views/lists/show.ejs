@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>List Details - <%= list.title %>
+    </title>
+    <!-- <link rel="stylesheet" href="/stylesheets/style.css"> -->
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+
+        <main>
+            <!-- Clickable list title that links to the list's places view -->
+            <h1>
+                <a href="/users/<%= user._id %>/lists/<%= list._id %>/places">
+                    <%= list.title %>
+                </a>
+            </h1>
+            <p>
+                <%= list.description %>
+            </p>
+
+            <!-- Options to edit or delete the list -->
+            <section>
+                <a href="/users/<%= user._id %>/lists/<%= list._id %>/edit">Edit List Title/Description</a>
+                <form action="/users/<%= user._id %>/lists/<%= list._id %>?_method=DELETE" method="POST"
+                    style="display:inline;">
+                    <button type="submit">Delete List</button>
+                </form>
+            </section>
+        </main>
+</body>
+
+</html>

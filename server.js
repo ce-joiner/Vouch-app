@@ -41,15 +41,18 @@ app.use(passUserToView);
 
 // ROUTES 
 
+// app.get('/', (req, res) => {
+//     // Check if the user is signed in
+//     if (req.session.user) {
+//       // Redirect signed-in users to their lists index
+//       res.redirect(`/users/${req.session.user._id}/lists`);
+//     } else {
+//       // Show the homepage for users who are not signed in
+//       res.render('index.ejs');
+//     }
+//   });
 app.get('/', (req, res) => {
-    // Check if the user is signed in
-    if (req.session.user) {
-      // Redirect signed-in users to their lists index
-      res.redirect(`/users/${req.session.user._id}/lists`);
-    } else {
-      // Show the homepage for users who are not signed in
-      res.render('index.ejs');
-    }
+    res.render('index.ejs');
   });
 
 
@@ -57,7 +60,7 @@ app.get('/', (req, res) => {
 app.use('/auth', authController);
 app.use(isSignedIn); 
 app.use('/users/:userId/lists', listsController);
-app.use('/users/:userId/places', placesController);
+app.use('/users/:userId/lists/:listId/places', placesController);
 
 
 
