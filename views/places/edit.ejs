@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Place - <%= place.name %></title>
+  <!-- <link rel="stylesheet" href="/stylesheets/style.css"> -->
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+  <main>
+    <h1>Edit Place - <%= place.name %></h1>
+    <form action="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>?_method=PUT" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" value="<%= place.name %>" required>
+      <br><br>
+      
+      <label for="category">Category:</label>
+      <select name="category" id="category" required>
+        <option value="restaurant" <%= place.category === 'restaurant' ? 'selected' : '' %>>Restaurant</option>
+        <option value="cafe/coffee shop" <%= place.category === 'cafe/coffee shop' ? 'selected' : '' %>>Cafe/Coffee Shop</option>
+        <option value="gallery/museum" <%= place.category === 'gallery/museum' ? 'selected' : '' %>>Gallery/Museum</option>
+        <option value="hotel" <%= place.category === 'hotel' ? 'selected' : '' %>>Hotel</option>
+        <option value="retail" <%= place.category === 'retail' ? 'selected' : '' %>>Retail</option>
+      </select>
+      <br><br>
+      
+      <label for="address">Address:</label>
+      <input type="text" name="address" id="address" value="<%= place.address %>">
+      <br><br>
+      
+      <label for="notes">Notes:</label>
+      <textarea name="notes" id="notes"><%= place.notes %></textarea>
+      <br><br>
+      
+      <label for="website">Website:</label>
+      <input type="url" name="website" id="website" value="<%= place.website %>">
+      <br><br>
+      
+      <label for="socialMedia">Social Media:</label>
+      <input type="url" name="socialMedia" id="socialMedia" value="<%= place.socialMedia %>">
+      <br><br>
+      
+      <button type="submit">Update Place</button>
+    </form>
+    <br>
+    <a href="/users/<%= user._id %>/lists/<%= list._id %>/places">Back to Places</a>
+  </main>
+</body>
+</html>
