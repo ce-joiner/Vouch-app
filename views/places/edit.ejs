@@ -3,11 +3,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Edit Place - <%= place.name %></title>
-  <!-- <link rel="stylesheet" href="/stylesheets/style.css"> -->
+  <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
-  <main>
+  <div class="main-container">
     <h1>Edit Place - <%= place.name %></h1>
     <form action="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>?_method=PUT" method="POST">
       <label for="name">Name:</label>
@@ -45,5 +45,9 @@
     <br>
     <a href="/users/<%= user._id %>/lists/<%= list._id %>/places">Back to Places</a>
   </main>
+</div>
+<footer>
+  <p>© 2025 Vouch App</p>
+</footer>
 </body>
 </html>

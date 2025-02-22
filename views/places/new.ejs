@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Add a New Place</title>
-  <!-- <link rel="stylesheet" href="/stylesheets/style.css"> -->
+  <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
+  <div class="main-container">
   <main>
     <h1>Add a New Place to <%= list.title %></h1>
     <form action="/users/<%= user._id %>/lists/<%= list._id %>/places" method="POST">
@@ -46,5 +47,9 @@
     <br>
     <a href="/users/<%= user._id %>/lists/<%= list._id %>/places">Back to Places</a>
   </main>
+  </div>
+  <footer>
+    <p>© 2025 Vouch App</p>
+  </footer>
 </body>
 </html>

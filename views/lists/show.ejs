@@ -3,14 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>List Details - <%= list.title %>
     </title>
-    <!-- <link rel="stylesheet" href="/stylesheets/style.css"> -->
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
     <%- include('../partials/_navbar.ejs') %>
-
+    <div class="main-container">
         <main>
             <!-- Clickable list title that links to the list's places view -->
             <h1>
@@ -31,6 +32,10 @@
                 </form>
             </section>
         </main>
+    </div>
+    <footer>
+      <p>© 2025 Vouch App</p>
+    </footer>
 </body>
 
 </html>

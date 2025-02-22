@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Places in <%= list.title %></title>
-  <!-- <link rel="stylesheet" href="/stylesheets/style.css"> -->
+  <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
-
+  <div class="main-container">
   <main>
     <h1>Places in <%= list.title %></h1>
     <a href="/users/<%= user._id %>/lists/<%= list._id %>/places/new">Add a New Place</a>
@@ -29,5 +29,9 @@
 
     <a href="/users/<%= user._id %>/lists">Back to Lists</a>
   </main>
+</div>
+<footer>
+  <p>© 2025 Vouch App</p>
+</footer>
 </body>
 </html>

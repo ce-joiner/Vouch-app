@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Add a New List</title>
 </head>
 
 <body>
     <%- include('../partials/_navbar.ejs') %>
+    <div class="main-container">
         <h1>Add a New List</h1>
         <form action="/users/<%= user._id %>/lists" method="POST">
             <label for="title">Title:</label>
@@ -21,6 +23,10 @@
             <br>
             <button type="submit">Add List</button>
         </form>
+    </div>
+    <footer>
+      <p>© 2025 Vouch App</p>
+    </footer>
 </body>
 
 </html>

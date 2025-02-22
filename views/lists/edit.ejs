@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Editing <%= list.title %>
     </title>
 </head>
 
 <body>
     <%- include('../partials/_navbar.ejs') %>
+    <div class="main-container">
         <h1>Edit <%= list.title %>
         </h1>
         <form action="/users/<%= user._id %>/lists/<%= list._id %>?_method=PUT" method="POST">
@@ -23,6 +25,10 @@
             <br>
             <button type="submit">Update List</button>
         </form>
+    </div>
+    <footer>
+      <p>© 2025 Vouch App</p>
+    </footer>
 </body>
 
 </html>

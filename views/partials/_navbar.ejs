@@ -1,10 +1,12 @@
 <nav>
-    <a href="/">Home</a>
+    <a href="/">VOUCH</a>
+    <div class="nav-links">
     <% if(user) { %>
-    <a href="/users/<%= user._id %>/lists">Your Lists</a>
-    <a href="/auth/sign-out">Sign Out</a>
+    <a href="/users/<%= user._id %>/lists">YOUR LISTS</a>
+    <a href="/auth/sign-out">SIGN OUT</a>
     <% } else { %>
-    <a href="/auth/sign-in">Sign In</a>
-    <a href="/auth/sign-up">Sign Up</a>
+    <a href="/auth/sign-in">SIGN IN</a>
+    <a href="/auth/sign-up">SIGN UP</a>
     <% } %>
+</div>
   </nav>

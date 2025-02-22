@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
+
+
+/* Ensure html and body take up full height */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Use Flexbox on the body to structure the entire page */
+  body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Noto Serif', serif;
+    background-color: #f9f9f9;
+    color: #333;
+    min-height: 100vh;
+  }
+  
+  /* Navigation using Flexbox */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #444;
+    padding: 10px 20px;
+  }
+  
+  nav .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  nav > a:first-child {
+    font-size: 2rem;  
+    /* font-weight: bold;  Optional: makes it bolder */
+}
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Main container now also uses Flexbox and will expand to fill available space */
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Allows the main container to expand */
+    padding: 40px;
+    width: 100%; 
+    box-sizing: border-box;
+  }
+  
+  /* Flex layout for forms */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 300px; 
+  }
+  
+  form label {
+    display: inline-block;
+    min-width: 80px;  /* Give labels a minimum width for alignment */
+    margin-bottom: 5px;
+    font-weight: bold;
+    vertical-align: top;  /* This helps align labels with their inputs */
+  }
+  
+  form input[type="text"],
+form input[type="url"],
+form input[type="email"],
+form input[type="password"],
+form textarea,
+form select {
+    width: 300px;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form textarea {
+    width: 300px;  /* Match other input widths */
+    min-height: 100px;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+  
+  /* Button styling */
+  form button,
+  a.button {
+    background-color: #008cba;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  form button:hover,
+  a.button:hover {
+    background-color: #005f5f;
+  }
+  
+  /* Optional Footer Styling */
+  footer {
+    background-color: #444;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+  }
