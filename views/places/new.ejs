@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add a New Place</title>
+  <title>ADD A NEW PLACE</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
   <div class="main-container">
   <main>
-    <h1>Add a New Place to <%= list.title %></h1>
+    <h1>ADD A NEW PLACE TO <%= list.title %></h1>
     <form action="/users/<%= user._id %>/lists/<%= list._id %>/places" method="POST">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" required>
@@ -42,14 +42,15 @@
       <input type="url" name="socialMedia" id="socialMedia">
       <br><br>
 
-      <button type="submit">Add Place</button>
+      <section>
+        <button type="submit">ADD PLACE</button>
+        <a href="/users/<%= user._id %>/lists/<%= list._id %>/places" class="action-button">BACK TO PLACES</a>
+      </section>
     </form>
-    <br>
-    <a href="/users/<%= user._id %>/lists/<%= list._id %>/places">Back to Places</a>
   </main>
   </div>
   <footer>
-    <p>© 2025 Vouch App</p>
+    <p>© 2025 VOUCH APP</p>
   </footer>
 </body>
 </html>

@@ -5,14 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <title>Your Lists</title>
+    <title>YOUR LISTS</title>
 </head>
 
 <body>
     <%- include('../partials/_navbar.ejs') %>
     <div class="main-container">
-        <h1>Your Lists</h1>
-        <a href="/users/<%=user._id%>/lists/new">Add a List</a>
+        <h1>YOUR LISTS</h1>
+        <a href="/users/<%=user._id%>/lists/new" class="add-button">Add a List</a>
         <ul>
             <% lists.forEach((list)=>{ %>
                 <li>
@@ -25,7 +25,7 @@
         </ul>
     </div>
     <footer>
-      <p>© 2025 Vouch App</p>
+      <p>© 2025 VOUCH APP</p>
     </footer>
 </body>
 

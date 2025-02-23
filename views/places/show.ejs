@@ -42,20 +42,21 @@
                                             <% } %>
 
                                                 <!-- Navigation Links -->
-                                                <a href="/users/<%= user._id %>/lists/<%= list._id %>/places">Back to
-                                                    Places</a>
-                                                <a
-                                                    href="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>/edit">Edit
-                                                    Place</a>
-                                                <form
-                                                    action="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>?_method=DELETE"
-                                                    method="POST" style="display:inline;">
-                                                    <button type="submit">Delete Place</button>
-                                                </form>
+                                                <section>
+                                                    <a href="/users/<%= user._id %>/lists/<%= list._id %>/places"
+                                                        class="action-button">BACK TO PLACES</a>
+                                                    <a href="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>/edit"
+                                                        class="action-button">EDIT PLACE</a>
+                                                    <form
+                                                        action="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>?_method=DELETE"
+                                                        method="POST">
+                                                        <button type="submit">DELETE PLACE</button>
+                                                    </form>
+                                                </section>
             </main>
         </div>
         <footer>
-            <p>© 2025 Vouch App</p>
+            <p>© 2025 VOUCH APP</p>
         </footer>
 </body>
 

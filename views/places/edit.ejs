@@ -2,13 +2,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Edit Place - <%= place.name %></title>
+  <title>EDIT <%= place.name %></title>
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
   <div class="main-container">
-    <h1>Edit Place - <%= place.name %></h1>
+    <h1>EDIT <%= place.name %></h1>
     <form action="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>?_method=PUT" method="POST">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" value="<%= place.name %>" required>
@@ -40,14 +40,15 @@
       <input type="url" name="socialMedia" id="socialMedia" value="<%= place.socialMedia %>">
       <br><br>
       
-      <button type="submit">Update Place</button>
+      <section>
+        <button type="submit">UPDATE PLACE</button>
+        <a href="/users/<%= user._id %>/lists/<%= list._id %>/places" class="action-button">BACK TO PLACES</a>
+      </section>
     </form>
-    <br>
-    <a href="/users/<%= user._id %>/lists/<%= list._id %>/places">Back to Places</a>
   </main>
 </div>
 <footer>
-  <p>© 2025 Vouch App</p>
+  <p>© 2025 VOUCH APP</p>
 </footer>
 </body>
 </html>

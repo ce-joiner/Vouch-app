@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Places in <%= list.title %></title>
+  <title>PLACES IN <%= list.title %></title>
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
   <div class="main-container">
   <main>
-    <h1>Places in <%= list.title %></h1>
-    <a href="/users/<%= user._id %>/lists/<%= list._id %>/places/new">Add a New Place</a>
+    <h1>PLACES IN <%= list.title %></h1>
+    <a href="/users/<%= user._id %>/lists/<%= list._id %>/places/new" class="action-button">ADD A NEW PLACE</a>
     
     <ul>
       <% if (list.places && list.places.length > 0) { %>
@@ -27,11 +27,11 @@
       <% } %>
     </ul>
 
-    <a href="/users/<%= user._id %>/lists">Back to Lists</a>
+    <a href="/users/<%= user._id %>/lists" class="action-button">BACK TO LISTS</a>
   </main>
 </div>
 <footer>
-  <p>© 2025 Vouch App</p>
+  <p>© 2025 VOUCH APP</p>
 </footer>
 </body>
 </html>
