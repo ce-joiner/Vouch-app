@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Show Place - <%= place.name %>
-    </title>
+    <title>Show Place - <%= place.name %></title>
     <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
@@ -16,6 +15,26 @@
                 <h1>
                     <%= place.name %>
                 </h1>
+                
+                <% if (place.images && place.images.length > 0) { %>
+                    <div class="place-images">
+                        <% if (place.images.length === 1) { %>
+                            <!-- Single image display -->
+                            <img src="<%= place.images[0].path %>" alt="<%= place.name %>" style="max-width: 100%; border-radius: 8px; margin: 20px 0;">
+                        <% } else { %>
+                            <!-- Multiple images gallery -->
+                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+                                <% place.images.forEach((image, index) => { %>
+                                    <div>
+                                        <img src="<%= image.path %>" alt="<%= place.name %> image <%= index+1 %>" 
+                                            style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px;">
+                                    </div>
+                                <% }); %>
+                            </div>
+                        <% } %>
+                    </div>
+                <% } %>
+                
                 <p><strong>Category:</strong>
                     <%= place.category %>
                 </p>
@@ -23,36 +42,31 @@
                     <p><strong>Address:</strong>
                         <%= place.address %>
                     </p>
-                    <% } %>
-                        <% if (place.notes) { %>
-                            <p><strong>Notes:</strong>
-                                <%= place.notes %>
-                            </p>
-                            <% } %>
-                                <% if (place.website) { %>
-                                    <p><strong>Website:</strong> <a href="<%= place.website %>" target="_blank">
-                                            <%= place.website %>
-                                        </a></p>
-                                    <% } %>
-                                        <% if (place.socialMedia) { %>
-                                            <p><strong>Social Media:</strong> <a href="<%= place.socialMedia %>"
-                                                    target="_blank">
-                                                    <%= place.socialMedia %>
-                                                </a></p>
-                                            <% } %>
+                <% } %>
+                <% if (place.notes) { %>
+                    <p><strong>Notes:</strong>
+                        <%= place.notes %>
+                    </p>
+                <% } %>
+                <% if (place.website) { %>
+                    <p><strong>Website:</strong> <a href="<%= place.website %>" target="_blank">
+                            <%= place.website %>
+                        </a></p>
+                <% } %>
+                <% if (place.socialMedia) { %>
+                    <p><strong>Social Media:</strong> <a href="<%= place.socialMedia %>" target="_blank">
+                            <%= place.socialMedia %>
+                        </a></p>
+                <% } %>
 
-                                                <!-- Navigation Links -->
-                                                <section>
-                                                    <a href="/users/<%= user._id %>/lists/<%= list._id %>/places"
-                                                        class="action-button">BACK TO PLACES</a>
-                                                    <a href="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>/edit"
-                                                        class="action-button">EDIT PLACE</a>
-                                                    <form
-                                                        action="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>?_method=DELETE"
-                                                        method="POST">
-                                                        <button type="submit">DELETE PLACE</button>
-                                                    </form>
-                                                </section>
+                <!-- Navigation Links -->
+                <section>
+                    <a href="/users/<%= user._id %>/lists/<%= list._id %>/places" class="action-button">BACK TO PLACES</a>
+                    <a href="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>/edit" class="action-button">EDIT PLACE</a>
+                    <form action="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>?_method=DELETE" method="POST">
+                        <button type="submit">DELETE PLACE</button>
+                    </form>
+                </section>
             </main>
         </div>
         <footer>

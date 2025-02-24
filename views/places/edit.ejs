@@ -9,14 +9,14 @@
   <%- include('../partials/_navbar.ejs') %>
   <div class="main-container">
     <h1>EDIT <%= place.name %></h1>
-    <form action="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>?_method=PUT" method="POST">
+    <form action="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" value="<%= place.name %>" required>
       <br><br>
       
       <label for="category">Category:</label>
       <select name="category" id="category" required>
-        <option value="restaurant" <%= place.category === 'restaurant' ? 'selected' : '' %>>Restaurant</option>
+        <option value="restaurant/bar" <%= place.category === 'restaurant/bar' ? 'selected' : '' %>>Restaurant/Bar</option>
         <option value="cafe/coffee shop" <%= place.category === 'cafe/coffee shop' ? 'selected' : '' %>>Cafe/Coffee Shop</option>
         <option value="gallery/museum" <%= place.category === 'gallery/museum' ? 'selected' : '' %>>Gallery/Museum</option>
         <option value="hotel" <%= place.category === 'hotel' ? 'selected' : '' %>>Hotel</option>
@@ -25,19 +25,49 @@
       <br><br>
       
       <label for="address">Address:</label>
-      <input type="text" name="address" id="address" value="<%= place.address %>">
+      <input type="text" name="address" id="address" value="<%= place.address || '' %>">
       <br><br>
       
       <label for="notes">Notes:</label>
-      <textarea name="notes" id="notes"><%= place.notes %></textarea>
+      <textarea name="notes" id="notes"><%= place.notes || '' %></textarea>
       <br><br>
       
       <label for="website">Website:</label>
-      <input type="url" name="website" id="website" value="<%= place.website %>">
+      <input type="url" name="website" id="website" value="<%= place.website || '' %>">
       <br><br>
       
       <label for="socialMedia">Social Media:</label>
-      <input type="url" name="socialMedia" id="socialMedia" value="<%= place.socialMedia %>">
+      <input type="url" name="socialMedia" id="socialMedia" value="<%= place.socialMedia || '' %>">
+      <br><br>
+      
+      <% if (place.images && place.images.length > 0) { %>
+        <div class="current-images">
+          <p>Current images:</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+            <% place.images.forEach((image, index) => { %>
+              <div style="position: relative; width: 150px;">
+                <img src="<%= image.path %>" alt="<%= place.name %> image <%= index+1 %>" style="width: 100%; height: 100px; object-fit: cover; border-radius: 6px;">
+                <div style="margin-top: 5px;">
+                  <label style="display: inline-flex; align-items: center; cursor: pointer; font-weight: normal; font-size: 0.8rem;">
+                    <input type="checkbox" name="deleteImages[]" value="<%= index %>" style="margin-right: 4px;">
+                    Remove
+                  </label>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      <% } %>
+      
+      <label for="images">Upload New Images:</label>
+      <input type="file" name="images" id="images" accept="image/*" multiple>
+      <p style="color: #666; font-size: 0.8rem; margin-top: 5px;">
+        You can select multiple images at once (hold Ctrl/Cmd while selecting).
+        <% if (place.images && place.images.length > 0) { %>
+          Leave empty to keep current images.
+        <% } %>
+        Maximum 10 images total.
+      </p>
       <br><br>
       
       <section>
@@ -45,8 +75,7 @@
         <a href="/users/<%= user._id %>/lists/<%= list._id %>/places" class="action-button">BACK TO PLACES</a>
       </section>
     </form>
-  </main>
-</div>
+  </div>
 <footer>
   <p>© 2025 VOUCH APP</p>
 </footer>

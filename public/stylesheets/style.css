@@ -40,6 +40,79 @@ p {
     color: black;
 }
 
+/* Images */
+.place-images {
+    margin: 20px 0;
+}
+
+.place-image,
+.place-images > div {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.place-image img,
+.place-images img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.place-images img:hover {
+    transform: scale(1.03);
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.image-gallery img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.current-images {
+    margin-bottom: 20px;
+}
+
+.image-thumbnail {
+    position: relative;
+    width: 150px;
+}
+
+.image-thumbnail img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.image-delete {
+    margin-top: 5px;
+}
+
+/* Style for the file input */
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
 /* Navigation */
 nav {
     display: flex;

@@ -4,13 +4,18 @@ const placeSchema = new mongoose.Schema({
     name: { type: String, required: true },
     category: {
         type: String,
-        enum: ['restaurant', 'cafe/coffee shop', 'gallery/museum', 'hotel', 'retail'],
+        enum: ['restaurant/bar', 'cafe/coffee shop', 'gallery/museum', 'hotel', 'retail'],
         required: true
     },
     address: { type: String },
     notes: { type: String },
     website: { type: String },
-    socialMedia: { type: String }
+    socialMedia: { type: String },
+    images: [{
+        filename: String,
+        path: String,
+        originalname: String
+    }]
 });
 
 const listSchema = new mongoose.Schema({
