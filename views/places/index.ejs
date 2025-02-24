@@ -12,20 +12,37 @@
     <h1>PLACES IN <%= list.title %></h1>
     <a href="/users/<%= user._id %>/lists/<%= list._id %>/places/new" class="action-button">ADD A NEW PLACE</a>
     
-    <ul>
-      <% if (list.places && list.places.length > 0) { %>
-        <% list.places.forEach(function(place) { %>
-          <li>
-            <!-- Clickable place name that directs to the place's show page -->
-            <a href="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>">
-              <%= place.name %>
-            </a>
-          </li>
+    <% if (list.places && list.places.length > 0) { %>
+      <% 
+        // Group places by category
+        const groupedPlaces = list.places.reduce((acc, place) => {
+          if (!acc[place.category]) {
+            acc[place.category] = [];
+          }
+          acc[place.category].push(place);
+          return acc;
+        }, {});
+      %>
+      
+      <div class="category-container">
+        <% Object.entries(groupedPlaces).forEach(([category, places]) => { %>
+          <div class="category-group">
+            <h2 class="category-title"><%= category %></h2>
+            <ul class="category-list">
+              <% places.forEach(place => { %>
+                <li>
+                  <a href="/users/<%= user._id %>/lists/<%= list._id %>/places/<%= place._id %>">
+                    <%= place.name %>
+                  </a>
+                </li>
+              <% }); %>
+            </ul>
+          </div>
         <% }); %>
-      <% } else { %>
-        <li>No places have been added to this list yet.</li>
-      <% } %>
-    </ul>
+      </div>
+    <% } else { %>
+      <p>No places have been added to this list yet.</p>
+    <% } %>
 
     <a href="/users/<%= user._id %>/lists" class="action-button">BACK TO LISTS</a>
   </main>
