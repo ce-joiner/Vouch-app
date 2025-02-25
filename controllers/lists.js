@@ -32,8 +32,6 @@ router.get('/new', async (req, res) => {
 router.delete('/:listId', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
-        // Use the Mongoose .deleteOne() method to delete
-        // an application using the id supplied from req.params
         currentUser.lists.id(req.params.listId).deleteOne();
         await currentUser.save();
         res.redirect(`/users/${currentUser._id}/lists`);
@@ -112,7 +110,6 @@ router.get('/:listId', async (req, res) => {
             list: list,
         });
     } catch (error) {
-        // If any errors, log them and redirect back home
         console.log(error);
         res.redirect('/');
     }

@@ -98,10 +98,6 @@ router.put("/:placeId", upload.array('images', 10), async (req, res) => {
         // Convert indices to numbers and sort in descending order
         const indicesToDelete = req.body.deleteImages.map(Number).sort((a, b) => b - a);
         
-        // Debug
-        console.log('Current directory:', process.cwd());
-        console.log('Files in uploads folder:', fs.readdirSync('./public/uploads'));
-        
         // Remove images at the specified indices
         for (const index of indicesToDelete) {
           if (index >= 0 && index < place.images.length) {
@@ -109,28 +105,19 @@ router.put("/:placeId", upload.array('images', 10), async (req, res) => {
             const imageToDelete = place.images[index];
             
             if (imageToDelete && imageToDelete.filename) {
-              console.log('Image to delete:', imageToDelete);
-              
               // Use the absolute path with process.cwd()
               const filePath = path.join(process.cwd(), 'public/uploads', imageToDelete.filename);
               
-              console.log('Attempting to delete file at:', filePath);
-              console.log('File exists?', fs.existsSync(filePath));
-              
               try {
                 fs.unlinkSync(filePath);
-                console.log('File deleted successfully');
               } catch (err) {
-                console.log('Error deleting file:', err.message);
               }
             }
-            
             // Now remove from the array
             place.images.splice(index, 1);
           }
         }
       }
-      
       // Add new images if uploaded
       if (req.files && req.files.length > 0) {
         // Check if adding these would exceed 10 images
@@ -146,7 +133,6 @@ router.put("/:placeId", upload.array('images', 10), async (req, res) => {
           });
         }
       }
-      
       // Remove old properties we don't need
       delete req.body.deleteImages;
       
