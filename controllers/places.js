@@ -36,7 +36,10 @@ router.get("/", async (req, res) => {
     try {
       const currentUser = await User.findById(req.params.userId);
       const list = currentUser.lists.id(req.params.listId);
-      res.render("places/index.ejs", { user: currentUser, list: list });
+      res.render("places/index.ejs", { 
+        user: currentUser, 
+        list: list
+      });
     } catch (error) {
       console.log(error);
       res.redirect("back");

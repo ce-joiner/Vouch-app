@@ -12,6 +12,9 @@
     <h1>PLACES IN <%= list.title %></h1>
     <a href="/users/<%= user._id %>/lists/<%= list._id %>/places/new" class="action-button">ADD A NEW PLACE</a>
     
+    <!-- Map partial-->
+<%- include('../partials/_map.ejs') %>
+
     <% if (list.places && list.places.length > 0) { %>
       <% 
         // Group places by category

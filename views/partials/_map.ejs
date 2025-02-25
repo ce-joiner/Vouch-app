@@ -1,0 +1,95 @@
+<div class="map-container">
+    <h2>LOCATION</h2>
+    <div id="map" style="height: 400px;"></div>
+  </div>
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get places with addresses and add user/list IDs
+      const places = <%- JSON.stringify((list.places || [])
+        .filter(place => place.address && place.address.trim())
+        .map(place => ({
+          name: place.name,
+          address: place.address,
+          id: place._id,
+          category: place.category,
+          userId: user._id,
+          listId: list._id
+        }))) %>;
+      
+      console.log("Places for map:", places); // Debug
+      
+      if (places.length > 0) {
+        // Initialize map centered temporarily at a default location
+        const map = L.map('map').setView([40.7128, -74.0060], 13); // Default to NYC
+        
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        
+        const markers = [];
+        let loadedCount = 0;
+        let successCount = 0;
+        
+        // Function to handle geocoding results
+        function processLocation(place, lat, lng) {
+          successCount++;
+          const marker = L.marker([lat, lng]).addTo(map);
+          marker.bindPopup(`
+            <strong>${place.name}</strong><br>
+            <em>${place.category}</em><br>
+            ${place.address}<br>
+            <a href="/users/${place.userId}/lists/${place.listId}/places/${place.id}">View details</a>
+          `);
+          markers.push(marker);
+          
+          // If we have at least one marker and all have been processed, fit map
+          if (successCount === 1) {
+            // Center on first success immediately
+            map.setView([lat, lng], 15);
+          }
+          
+          if (markers.length > 1 && loadedCount === places.length) {
+            // Fit all markers
+            const group = new L.featureGroup(markers);
+            map.fitBounds(group.getBounds());
+          }
+        }
+        
+        // Use OpenStreetMap Nominatim for geocoding
+        places.forEach(function(place) {
+          const encodedAddress = encodeURIComponent(place.address);
+          fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodedAddress}`)
+            .then(response => response.json())
+            .then(data => {
+              loadedCount++;
+              if (data && data.length > 0) {
+                processLocation(place, data[0].lat, data[0].lon);
+              } else {
+                console.log(`No geocoding results for: ${place.address}`);
+              }
+              
+              // Handle case where all addresses failed to geocode
+              if (loadedCount === places.length && markers.length === 0) {
+                document.getElementById('map').innerHTML = "<p class='no-places'>Could not locate addresses on map</p>";
+              }
+            })
+            .catch(error => {
+              loadedCount++;
+              console.error('Error geocoding address:', error);
+              
+              // Check if all geocoding attempts have completed
+              if (loadedCount === places.length && markers.length === 0) {
+                document.getElementById('map').innerHTML = "<p class='no-places'>Error loading map locations</p>";
+              }
+            });
+        });
+      } else {
+        document.getElementById('map').innerHTML = "<p class='no-places'>No places with addresses to display</p>";
+      }
+    });
+  </script>
